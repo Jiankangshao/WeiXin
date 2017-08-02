@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.baidu.mapapi.SDKInitializer;
+
 /**
  * Author: QiuChenluoye
  * Time: 2017/07/26,上午 09:58
@@ -43,6 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SDKInitializer.initialize(getApplicationContext());
         Log.d(TAG, "BaseActivity----is OnCreate.");
 
         Bundle bundle = getIntent().getExtras();
@@ -70,14 +73,14 @@ public abstract class BaseActivity extends AppCompatActivity
         setContentView(mContextView);
         initView(mContextView);
         setListener();
-        doBusiness(mContextView.getContext());
+        doBusiness(mContextView.getContext(), mContextView);
     }
 
     public <T> boolean isNull(T obj) {
         return (null == obj);
     }
 
-    public abstract void doBusiness(Context mContext);
+    public abstract void doBusiness(Context mContext, View view);
 
     public abstract void setListener();
 
@@ -88,7 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity
     public abstract void initView(final View view);
 
     protected <T extends View> T $(int resID) {
-        return (T) super.findViewById(resID);
+        return (T) mContextView.findViewById(resID);
     }
 
     public abstract void initParams(Bundle bundle);

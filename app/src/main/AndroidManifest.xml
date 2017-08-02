@@ -39,6 +39,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="dMF9yKBGBRmYXFzW9qfZx0GFAGxzEfZZ"/>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"/>
 
         <activity android:name=".SplashView">
             <intent-filter>
@@ -50,6 +58,8 @@
         <activity android:name=".UI.LoginView">
         </activity>
         <activity android:name=".UI.MainView">
+        </activity>
+        <activity android:name=".UI.RegisterView">
         </activity>
     </application>
 
